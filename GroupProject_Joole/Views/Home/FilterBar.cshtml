@@ -1,0 +1,46 @@
+﻿@model DAL.Models.Filters
+
+<div id="filterBar">
+    @{
+        using (Html.BeginForm("ApplyFilter", "Home", FormMethod.Post, new { id = "FilterForm" }))
+        {
+            @*if (Model.Count > 0)
+                {
+                    @Html.Label("TypeFilters")
+                    for (int i = 0;i<Model.Count;i++)
+                    {
+                        <div>
+                            <div>@Html.Label(Model[i].TypeName)</div>
+                            <div>@Html.TextBoxFor(m => m[i].Value)</div>
+                            @Html.HiddenFor(m => m[i].PropertyID)
+                        </div>
+                    }
+                }*@
+            if (Model.TypeFilters != null && Model.TypeFilters.Count > 0)
+            {
+                @Html.Label("TypeFilters")
+                for (int i = 0; i < Model.TypeFilters.Count; i++)
+                {
+                    <div>
+                        <div>@Html.Label(Model.TypeFilters[i].TypeName)</div>
+                        <div>@Html.TextBoxFor(m => m.TypeFilters[i].Value)</div>
+                        @Html.HiddenFor(m => m.TypeFilters[i].PropertyID)
+                    </div>
+                }
+            }
+            if (Model.TechSpecFilters != null && Model.TechSpecFilters.Count > 0)
+            {
+                @Html.Label("TechSpecFilters")
+                for (int i = 0; i < Model.TechSpecFilters.Count; i++)
+                {
+                    <div>
+                        <div>@Html.Label(Model.TechSpecFilters[i].PropertyName)</div>
+                        <input type="range" name="@Html.NameFor(m => m.TechSpecFilters[i].Value)" min="@Model.TechSpecFilters[i].MinValue" max="@Model.TechSpecFilters[i].MaxValue" />
+                        @Html.HiddenFor(m => m.TechSpecFilters[i].PropertyID)
+                    </div>
+                }
+            }
+            <button id="filterBtn" type="submit">Apply Filter</button>
+        }
+    }
+</div>

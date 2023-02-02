@@ -1,0 +1,8 @@
+﻿<div id="displayPage">
+    <div id="FilterContainer">
+        @Html.Partial("FilterBar", TempData.Peek("Filters"))
+    </div>
+    <div id="ProductDisplayContainer">
+        @Html.Partial("ProductDisplay", TempData.Peek("Products"))
+    </div>
+</div>

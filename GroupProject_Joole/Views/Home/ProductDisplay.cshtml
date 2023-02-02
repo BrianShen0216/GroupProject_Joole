@@ -1,0 +1,16 @@
+﻿@model List<DAL.Models.Products>
+
+<div id="productDisplay">
+    @foreach(var prod in Model)
+            {
+                <div id="@prod.ProductID">
+                    <ul>
+                        <li>@Html.DisplayFor(model=>prod.ProductName) </li>
+                        @foreach(var prop in prod.PropertyValue)
+                        { 
+                            <li>@prop.PropertyValue1 @prop.Property.PropertyName</li>
+                        }
+                    </ul>
+                </div>
+            }
+</div>

@@ -52,6 +52,7 @@
     <Compile Include="Models\Category.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Filters.cs" />
     <Compile Include="Models\Manufacturers.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -70,6 +71,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProductDetail.cs" />
     <Compile Include="Models\Products.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -85,9 +87,11 @@
     <Compile Include="Models\TechSpecFilter.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TechSpecFilterWithValue.cs" />
     <Compile Include="Models\TypeFilter.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TypeFilterWithValue.cs" />
     <Compile Include="Models\Users.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
