@@ -31,9 +31,8 @@ namespace GroupProject_Joole.Controllers
             var categoryList = bLLClass.getCategoryList();
             ViewBag.categoryList = new SelectList(categoryList, "CategoryID", "CategoryName");
 
-            return View();
+            return PartialView("Search");
         }
-        [HttpGet]
         public ActionResult ApplyFilter(Filters filters)
         {
             List<Products> products = (List<Products>)TempData.Peek("Products");
@@ -72,6 +71,12 @@ namespace GroupProject_Joole.Controllers
             TempData["Filters"] = filters;
 
             return View("MainPage");
+        }
+
+        [HttpGet]
+        public PartialViewResult ReturnDisplayPage()
+        {
+            return PartialView("DisplayPage");
         }
 
         public ActionResult Summary()

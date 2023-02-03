@@ -1,5 +1,12 @@
 ﻿<div id="MainPage">
+    <header id="mainheader" class="mainheader bg-primary">
+        <div id="searchcontainer">
+            @Html.Action("Search")
+        </div>
+    </header>
     @* ViewBag: Products: List<Products>, Filters: {List<TypeFilterWithValue>, List<TechSpecFilterWithValue>} *@
     @*@Html.Partial("DisplayPage", new ViewDataDictionary { { "Products", ViewBag.Products }, { "Filters", ViewBag.Filters } })*@
-    @Html.Partial("DisplayPage")
+    <div id="mainbody" class="mainbody">
+        @Html.Partial("DisplayPage")
+    </div>
 </div>
