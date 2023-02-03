@@ -10,27 +10,6 @@ namespace BLL
 {
     public class BLLClass
     {
-        private DALClass _dal;
-        public BLLClass()
-        {
-            _dal = new DALClass();
-        }
-
-        public List<ProductDetail> GetAllProdcutDetails()
-        {
-            return _dal.GetAllProdcutDetails();
-        }
-
-        public List<Products> GetAllProducts()
-        {
-            return _dal.GetAllProducts();
-        }
-
-        public List<Products> GetSubCategoryProducts(int subCategoryID)
-        {
-            return _dal.GetSubCategoryProducts(subCategoryID);
-        }
-
         public List<Products> FilterProducts(List<Products> products, Filters filters)
         {
             List<Products> result = products;
@@ -104,35 +83,6 @@ namespace BLL
                 MinValue= tsf.MinValue,
                 PropertyName = tsf.Property.PropertyName
             }).ToList();
-        }
-
-        public Filters GetFilters(int subCategoryID)
-        {
-            Filters filters = new Filters();
-            SubCategory sub = _dal.GetSubCategory(subCategoryID);
-            if (sub == null)
-            {
-                filters.TypeFilters = new List<TypeFilterWithValue>();
-                filters.TechSpecFilters = new List<TechSpecFilterWithValue>();
-            }else
-            {
-                filters.TypeFilters = sub.TypeFilter.Select(tf => new TypeFilterWithValue
-                {
-                    PropertyID = tf.PropertyID,
-                    SubCategoryID = tf.SubCategoryID,
-                    TypeName = tf.TypeName,
-                    PropertyName = tf.Property.PropertyName
-                }).ToList();
-                filters.TechSpecFilters = sub.TechSpecFilter.Select(tsf => new TechSpecFilterWithValue
-                {
-                    PropertyID = tsf.PropertyID,
-                    SubCategoryID = tsf.SubCategoryID,
-                    MaxValue = tsf.MaxValue,
-                    MinValue = tsf.MinValue,
-                    PropertyName = tsf.Property.PropertyName
-                }).ToList();
-            }
-            return filters;
         }
     }
 }

@@ -28,30 +28,6 @@ namespace GroupProject_Joole.Controllers
 
         public ActionResult Search()
         {
-            //List<ProductDetail> rawData = new List<ProductDetail>
-            //{
-            //    new ProductDetail
-            //    {
-            //        ProductID= 1,
-            //        Manufacturer = new Manufacturers
-            //        {
-            //            ManufacturerID= 1,
-            //            ManufacturerName="Amazon",
-            //            ManufacturerWeb="amazon.com"
-            //        },
-            //        SubCategoryID= 1,
-            //        ProductName="FanA",
-            //        ProductImage=null,
-            //        Series="Series350",
-            //        Model="A",
-            //        ModelYear=2013,
-            //        PropertyID= 1,
-            //        PropertyName="AirFlow (CFM)",
-            //        PropertyValue1="68",
-            //        IsType=false,
-            //        IsTechSpec=true
-            //    }
-            //};
             List<Products> products = _bll.GetSubCategoryProducts(1);
             Filters filters = _bll.GetFilters(1);
             TempData["Products"] = products;
