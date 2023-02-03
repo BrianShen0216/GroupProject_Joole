@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>_DummyLayout</title>
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/css")
+    @*<link href="@Url.Content("~/Content/Styles.css")" rel="stylesheet" type="text/css" />*@
 </head>
 <body>
     @RenderBody()
@@ -21,6 +23,5 @@
             return false;
         });
     </script>
-    @*@Scripts.Render("~/Scripts/AssociateScripts.js")*@
 </body>
 </html>
