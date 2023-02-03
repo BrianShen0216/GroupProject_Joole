@@ -1,0 +1,37 @@
+﻿@model DAL.Models.CategorySub
+@{
+    ViewBag.Title = "ViewTest";
+    Layout = "~/Views/Shared/_DummyLayout.cshtml";
+}
+
+<h2>Search</h2>
+@using (Html.BeginForm("Result", "Home"))
+{
+    <fieldset>
+        <div>
+            @if (ViewBag.categoryList != null)
+            {
+                @Html.DropDownListFor(model => model.CategoryID, ViewBag.categoryList as SelectList, "Category", new { @class = "categoryDrop" })
+            }
+            @Html.EditorFor(model => model.userInput, new { htmlAttributes = new { @class = "userInput" } })
+            @Html.DropDownListFor(model => model.SubCategoryID, new SelectList(" "), "SubCategory", new { @class = "SubCategoryDrop" })
+            <input type="submit" value="Go" class="searchBtn" />
+        </div>
+    </fieldset>
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#CategoryID").change(function () {
+            $.get("/Home/GetSubList", { CategoryID: $("#CategoryID").val() }, function (data) {
+                $("#SubCategoryID").empty();
+                $.each(data, function (index, row) {
+                    $("#SubCategoryID").append("<option value='" + row.SubCategoryID + "'>" + row.SubCategoryName + "</option>")
+                });
+            });
+        })
+    });
+</script>
+

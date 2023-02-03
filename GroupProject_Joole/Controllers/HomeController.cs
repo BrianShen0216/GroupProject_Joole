@@ -6,8 +6,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using BLL;
-using DAL.Models;
 
 namespace GroupProject_Joole.Controllers
 {
@@ -34,17 +32,12 @@ namespace GroupProject_Joole.Controllers
             ViewBag.categoryList = new SelectList(categoryList, "CategoryID", "CategoryName");
 
             return View();
-            List<Products> products = _bll.GetSubCategoryProducts(1);
-            Filters filters = _bll.GetFilters(1);
-            TempData["Products"] = products;
-            TempData["Filters"] = filters;
-            return View("MainPage");
         }
         [HttpGet]
         public ActionResult ApplyFilter(Filters filters)
         {
             List<Products> products = (List<Products>)TempData.Peek("Products");
-            List<Products> filteredProducts = _bll.FilterProducts(products, filters);
+            List<Products> filteredProducts = bLLClass.FilterProducts(products, filters);
             return PartialView("ProductDisplay", filteredProducts);
         }
 
@@ -74,7 +67,11 @@ namespace GroupProject_Joole.Controllers
             }
             //var productList = jooleDatabaseEntities.Products.Where(x => x.SubCategoryID == id && x.ProductName.Contains(userInput)).Include("Manufacturers").Include("PropertyValue").Include("PropertyValue.Property").ToList();
             //Console.WriteLine(productList);
-            return View("Result",productList);
+            Filters filters = bLLClass.GetFilters(categorySub.SubCategoryID);
+            TempData["Products"] = productList;
+            TempData["Filters"] = filters;
+
+            return View("MainPage");
         }
 
         public ActionResult Summary()

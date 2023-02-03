@@ -11,7 +11,7 @@ namespace DAL.Models
 
         public int CategoryID { get; set; }
 
-        public int? SubCategoryID { get; set; }
+        public int SubCategoryID { get; set; }
 
         public string userInput { get; set; }
     }

@@ -12,22 +12,5 @@ namespace DAL
 {
     public class DALClass
     {
-        public SubCategory GetSubCategory(int subCategoryID)
-        {
-            using (var dbcontext = new JooleDatabaseEntities())
-            {
-                var subList = dbcontext.SubCategory.Where(sc => sc.SubCategoryID == subCategoryID)
-                    .Include("TypeFilter")
-                    .Include("TypeFilter.Property")
-                    .Include("TechSpecFilter")
-                    .Include("TechSpecFilter.Property")
-                    .ToList();
-                if (subList.Count>0)
-                {
-                    return subList[0];
-                }
-                return null;
-            }
-        }
     }
 }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -70,37 +71,35 @@ namespace BLL
             return result;
         }
 
-        public List<TypeFilterWithValue> GetTypeFilters(int subCategoryID)
+        public Filters GetFilters(int subCategoryID)
         {
-            SubCategory sub = _dal.GetSubCategory(subCategoryID);
-            if (sub==null)
+            Filters filters = new Filters();
+            var subList = jooleDatabaseEntities.SubCategory.Where(sc => sc.SubCategoryID == subCategoryID)
+                    .Include("TypeFilter")
+                    .Include("TypeFilter.Property")
+                    .Include("TechSpecFilter")
+                    .Include("TechSpecFilter.Property")
+                    .ToList();
+            if (subList.Count > 0)
             {
-                return new List<TypeFilterWithValue>();
+                SubCategory sub = subList[0];
+                filters.TypeFilters = sub.TypeFilter.Select(tf => new TypeFilterWithValue
+                {
+                    PropertyID = tf.PropertyID,
+                    SubCategoryID = tf.SubCategoryID,
+                    TypeName = tf.TypeName,
+                    PropertyName = tf.Property.PropertyName
+                }).ToList();
+                filters.TechSpecFilters = sub.TechSpecFilter.Select(tsf => new TechSpecFilterWithValue
+                {
+                    PropertyID = tsf.PropertyID,
+                    SubCategoryID = tsf.SubCategoryID,
+                    MaxValue = tsf.MaxValue,
+                    MinValue = tsf.MinValue,
+                    PropertyName = tsf.Property.PropertyName
+                }).ToList();
             }
-            return sub.TypeFilter.Select(tf => new TypeFilterWithValue
-            {
-                PropertyID = tf.PropertyID,
-                SubCategoryID = tf.SubCategoryID,
-                TypeName = tf.TypeName,
-                PropertyName = tf.Property.PropertyName
-            }).ToList();
-        }
-
-        public List<TechSpecFilterWithValue> GetTechSpecFilters(int subCategoryID)
-        {
-            SubCategory sub = _dal.GetSubCategory(subCategoryID);
-            if (sub == null)
-            {
-                return new List<TechSpecFilterWithValue>();
-            }
-            return sub.TechSpecFilter.Select(tsf => new TechSpecFilterWithValue
-            {
-                PropertyID = tsf.PropertyID,
-                SubCategoryID = tsf.SubCategoryID,
-                MaxValue = tsf.MaxValue,
-                MinValue= tsf.MinValue,
-                PropertyName = tsf.Property.PropertyName
-            }).ToList();
+            return filters;
         }
     }
 }
