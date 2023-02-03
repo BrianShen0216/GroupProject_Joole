@@ -16,10 +16,10 @@ namespace GroupProject_Joole.Controllers
     public class HomeController : Controller
     {
         protected JooleDatabaseEntities userEntity = new JooleDatabaseEntities();
-        [HttpGet]
         //JooleDatabaseEntities jooleDatabaseEntities = new JooleDatabaseEntities();
         BLLClass bLLClass = new BLLClass();
 
+        [HttpGet]
         public ActionResult Login()
         {
             //LoginUser loginUser = new LoginUser();
@@ -40,7 +40,7 @@ namespace GroupProject_Joole.Controllers
                     //return RedirectToAction("SignUp");
                 }
             }
-            return View("Search");
+            return RedirectToAction("Search");
         }
 
         public ActionResult SignUp()

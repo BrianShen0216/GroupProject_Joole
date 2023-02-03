@@ -1,4 +1,8 @@
-﻿<div id="MainPage">
+﻿@{ 
+    Layout = "~/Views/Shared/_DummyLayout.cshtml";
+}
+
+<div id="MainPage">
     <header id="mainheader" class="mainheader bg-primary">
         <div id="searchcontainer">
             @Html.Action("Search")
