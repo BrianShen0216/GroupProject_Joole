@@ -1,0 +1,113 @@
+use JooleDatabase
+go
+
+​
+Insert Into users(UserName, UserEmail, UserPassword) Values ('admin', 'admin@test.com', 'admin');
+go
+
+Insert Into Category(CategoryID,CategoryName) Values (1,'Mechanical');
+Insert Into Category(CategoryID,CategoryName) Values (2,'Electrical');
+Insert Into Category(CategoryID,CategoryName) Values (3,'Stationary');
+Insert Into Category(CategoryID,CategoryName) Values (4,'Furniture');
+go
+​
+Insert Into SubCategory(SubCategoryID, SubCategoryName, CategoryID) values (1,'Fans', 2);
+Insert Into SubCategory(SubCategoryID, SubCategoryName, CategoryID) values (2,'Vaccums', 2);
+Insert Into SubCategory(SubCategoryID, SubCategoryName, CategoryID) values (3,'Toasters', 2);
+Insert Into SubCategory(SubCategoryID, SubCategoryName, CategoryID) values (4,'Couch', 4);
+Insert Into SubCategory(SubCategoryID, SubCategoryName, CategoryID) values (5,'Chair', 4);
+Insert Into SubCategory(SubCategoryID, SubCategoryName, CategoryID) values (6,'Table', 4);
+Insert Into SubCategory(SubCategoryID, SubCategoryName, CategoryID) Values (7,'Wrenches', 1);
+Insert Into SubCategory(SubCategoryID, SubCategoryName, CategoryID) Values (8,'Hammers', 1);
+Insert Into SubCategory(SubCategoryID, SubCategoryName, CategoryID) Values (9,'Nails', 1);
+Insert Into SubCategory(SubCategoryID, SubCategoryName, CategoryID) Values (10,'Books', 3);
+Insert Into SubCategory(SubCategoryID, SubCategoryName, CategoryID) Values (11,'Pens', 3);
+Insert Into SubCategory(SubCategoryID, SubCategoryName, CategoryID) Values (12,'Paper', 3);
+go
+
+Insert Into Manufacturers(ManufacturerID, ManufacturerName, ManufacturerWeb) Values (5, 'Google','google.com');
+Insert Into Manufacturers(ManufacturerID, ManufacturerName, ManufacturerWeb) Values (6, 'Apple','apple.com');
+Insert Into Manufacturers(ManufacturerID, ManufacturerName, ManufacturerWeb) Values(7, 'Microsoft','ms.com');
+Insert Into Manufacturers(ManufacturerID, ManufacturerName, ManufacturerWeb) Values (8, 'Amazon','amazon.com');
+go
+
+-- insert values into products 
+-- so far only adding 'fans'
+Insert Into Products(ProductID, ManufacturerID,SubcategoryID ,ProductName, Series, Model, ModelYear) 
+	Values(1, 5, 1, 'FanA' , 'Series350', 'A', 2013);
+Insert Into Products(ProductID, ManufacturerID,SubcategoryID ,ProductName, Series, Model, ModelYear) 
+	Values(2, 5, 1, 'FanB' , 'Series351', 'B', 2016);
+Insert Into Products(ProductID, ManufacturerID,SubcategoryID ,ProductName, Series, Model, ModelYear) 
+	Values(3, 6, 1, 'FanC' , 'Series352', 'A', 2019);
+Insert Into Products(ProductID, ManufacturerID,SubcategoryID ,ProductName, Series, Model, ModelYear) 
+	Values(4, 6, 1, 'FanD' , 'Series353', 'B', 2022);
+Insert Into Products(ProductID, ManufacturerID,SubcategoryID ,ProductName, Series, Model, ModelYear) 
+	Values(5, 7, 1, 'FanE' , 'Series354', 'C', 2023);
+Insert Into Products(ProductID, ManufacturerID,SubcategoryID ,ProductName, Series, Model, ModelYear) 
+	Values(6, 7, 1, 'FanF' , 'Series355', 'D', 2008);
+Insert Into Products(ProductID, ManufacturerID,SubcategoryID ,ProductName, Series, Model, ModelYear) 
+	Values(7, 8, 1, 'FanG' , 'Series356', 'C', 2000);
+Insert Into Products(ProductID, ManufacturerID,SubcategoryID ,ProductName, Series, Model, ModelYear) 
+	Values(8, 8, 1, 'FanH' , 'Series357', 'D', 2012);
+go
+​
+-- Inserting TechSpec Property Names
+Insert Into Property(PropertyID, PropertyName, IsType, IsTechSpec) Values (1, 'AirFlow (CFM)', 0, 1);
+Insert Into Property(PropertyID, PropertyName, IsType, IsTechSpec) Values (2, 'Max Power (W)', 0, 1);
+Insert Into Property(PropertyID, PropertyName, IsType, IsTechSpec) Values (3, 'Sound at Max Speed (dbA)', 0, 1);
+Insert Into Property(PropertyID, PropertyName, IsType, IsTechSpec) Values (4, 'Fan Sweep Diameter (in)', 0, 1);
+Insert Into Property(PropertyID, PropertyName, IsType, IsTechSpec) Values (5, 'Color', 1, 0);
+go
+​
+-- Inserting TechSpecFilter and related sub category
+Insert Into TechSpecFilter(PropertyID, SubCategoryID, MinValue, MaxValue) Values (1, 1, 0, 100);
+Insert Into TechSpecFilter(PropertyID, SubCategoryID, MinValue, MaxValue) Values (2, 1, 0, 2000);
+go
+​​
+--Inserting TypeFilter and related sub category
+Insert Into TypeFilter(PropertyID, SubCategoryID, TypeName) Values (5, 1, 'Type-Color');
+go
+​
+​
+-- Inserting values into PropertyValues table
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(1,1,68);
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(2,1,45);
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(3,1,13);
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(4,1,68);
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(5,1,89);
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(6,1,99);
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(7,1,75);
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(8,1,25);
+go
+
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(1,2,1080);
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(2,2,1568);
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(3,2,1888);
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(4,2,1573);
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(5,2,998);
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(6,2,900);
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(7,2,500);
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(8,2,1400);
+go
+
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(2,3,60);
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(3,3,30);
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(4,3,70);
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(5,3,85);
+go
+
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(1,4,20);
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(5,4,8);
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(7,4,18);
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(8,4,26);
+go
+
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(1,5,'Green');
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(2,5,'Green');
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(3,5,'Green');
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(4,5,'Green');
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(5,5,'Black');
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(6,5,'Black');
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(7,5,'Black');
+Insert into propertyvalue(ProductID, PropertyID, PropertyValue) values(8,5,'Black');
+go

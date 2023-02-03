@@ -1,0 +1,44 @@
+﻿
+@*@{
+    ViewBag.Title = "Header";
+}*@
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+</head>
+
+
+<nav class="navbar fixed-top navbar-dark bg-black">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Fixed top</a>
+    </div>
+</nav>
+
+
+@*<style>
+    .header {
+        background: linear-gradient(#0094ff,white);
+        height: 120px;
+        padding-top: 30px;
+    }
+</style>*@
+@**@
+<body>
+
+    @*<div style="height: 100px"></div>*@
+
+    @RenderBody()
+
+
+</body>
+
+</html>
