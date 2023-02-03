@@ -46,3 +46,12 @@ textarea {
 
 #ProductDisplayContainer {
 }
+}
+
+.userInput{
+    width: 500px;
+}
+
+.searchBtn {
+    width: 50px;
+}

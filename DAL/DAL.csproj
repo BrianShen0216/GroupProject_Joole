@@ -53,6 +53,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Filters.cs" />
+    <Compile Include="Models\CategorySub.cs" />
     <Compile Include="Models\Manufacturers.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
