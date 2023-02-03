@@ -21,6 +21,7 @@ namespace DAL.Models
     
         public int CategoryID { get; set; }
         public string CategoryName { get; set; }
+
     
         public virtual ICollection<SubCategory> SubCategory { get; set; }
     }

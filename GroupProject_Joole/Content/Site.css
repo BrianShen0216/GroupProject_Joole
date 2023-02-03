@@ -28,3 +28,11 @@ textarea {
     background-color: #777;
     border-color: #fff
 }
+
+.userInput{
+    width: 500px;
+}
+
+.searchBtn {
+    width: 50px;
+}
