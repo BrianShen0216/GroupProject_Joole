@@ -152,6 +152,14 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Image\Electrical\Fans\FanA.png" />
+    <Content Include="Image\Electrical\Fans\FanB.png" />
+    <Content Include="Image\Electrical\Fans\FanC.png" />
+    <Content Include="Image\Electrical\Fans\FanD.jpg" />
+    <Content Include="Image\Electrical\Fans\FanE.png" />
+    <Content Include="Image\Electrical\Fans\FanF.png" />
+    <Content Include="Image\Electrical\Fans\FanG.png" />
+    <Content Include="Image\Electrical\Fans\FanH.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -224,7 +232,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Image\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
