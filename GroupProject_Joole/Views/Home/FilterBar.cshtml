@@ -18,29 +18,60 @@
                 }*@
             if (Model.TypeFilters != null && Model.TypeFilters.Count > 0)
             {
-                @Html.Label("TypeFilters")
+                <div class="border border-secondary-subtle rounded">
+                    <h5 style="padding-top: 5px;padding-bottom:5px; padding-left: 1rem; margin-bottom: 0;"><b>TypeFilters</b></h5>
+                </div>
                 for (int i = 0; i < Model.TypeFilters.Count; i++)
                 {
-                    <div>
-                        <div>@Html.Label(Model.TypeFilters[i].TypeName)</div>
-                        <div>@Html.TextBoxFor(m => m.TypeFilters[i].Value)</div>
-                        @Html.HiddenFor(m => m.TypeFilters[i].PropertyID)
+                    <div class="border border-secondary-subtle rounded">
+                        <div style="padding-top: 5px; padding-bottom: 5px; padding-left: 1rem;">
+                            <div style="display: inline-block; width: 10rem">@Html.Label(Model.TypeFilters[i].TypeName)</div>
+                            <div style="display: inline-block;">@Html.TextBoxFor(m => m.TypeFilters[i].Value, new { @class = "typefilterbox" })</div>
+                            @Html.HiddenFor(m => m.TypeFilters[i].PropertyID)
+                        </div>
                     </div>
                 }
             }
             if (Model.TechSpecFilters != null && Model.TechSpecFilters.Count > 0)
             {
-                @Html.Label("TechSpecFilters")
-                for (int i = 0; i < Model.TechSpecFilters.Count; i++)
-                {
-                    <div>
-                        <div>@Html.Label(Model.TechSpecFilters[i].PropertyName)</div>
-                        <input type="range" name="@Html.NameFor(m => m.TechSpecFilters[i].Value)" min="@Model.TechSpecFilters[i].MinValue" max="@Model.TechSpecFilters[i].MaxValue" />
-                        @Html.HiddenFor(m => m.TechSpecFilters[i].PropertyID)
+                <div class="border border-secondary-subtle rounded">
+                    <h5 style="padding-top: 5px; padding-bottom: 5px; padding-left: 1rem; vertical-align: central; margin-bottom: 0;"><b>TechSpecFilters</b></h5>
+                </div>
+                <div class="border border-secondary-subtle rounded">
+                    <div style="padding-left: 1rem;">
+                        @for (int i = 0; i < Model.TechSpecFilters.Count; i++)
+                        {
+                            <div>@Html.Label(Model.TechSpecFilters[i].PropertyName)</div>
+                            <div style="text-align: center;">
+                                <label>@Model.TechSpecFilters[i].MinValue</label>
+                                <input type="range" name="@Html.NameFor(m => m.TechSpecFilters[i].Value)" min="@Model.TechSpecFilters[i].MinValue" max="@Model.TechSpecFilters[i].MaxValue" style="width: 12rem;" />
+                                <label>@Model.TechSpecFilters[i].MaxValue</label>
+                                @Html.HiddenFor(m => m.TechSpecFilters[i].PropertyID)
+                            </div>
+                        }
                     </div>
-                }
+                </div>
             }
-            <button id="filterBtn" type="submit" class="btn btn-primary">Apply Filter</button>
+            <div style="margin-top: 1rem;">
+                <div style="float: left; padding-left: 1rem; display: inline-block">
+                    <button id="filterBtn" type="submit" class="btn btn-primary">Apply Filter</button>
+                </div>
+                <div style="float: right; padding-right: 1rem; display: inline-block">
+                    <button id="clrBtn" type="button" class="btn btn-primary" >Clear</button>
+                </div>
+            </div>
         }
     }
+    <script type="text/javascript">
+        $('#FilterForm').submit(function () {
+            var form = $(this).serialize();
+            $('#ProductDisplayContainer').load('@Url.Action("ApplyFilter", "Home")', form);
+            return false;
+        });
+
+        $('#clrBtn').click(function () {
+            $('#mainbody').load('@Url.Action("ReturnDisplayPage", "Home")');
+            return false;
+        })
+    </script>
 </div>

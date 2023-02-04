@@ -29,27 +29,113 @@ textarea {
     border-color: #fff
 }*/
 
-#displayPage{
+#MainPage {
+    height: 100vh;
+    overflow: hidden;
+}
+
+#mainheader{
+    height: 5rem;
+    background-image: linear-gradient(navy, 40%, white);
+    text-align: center;
+    position: relative;
+}
+
+#searchcontainer {
+    position: absolute;
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    /*vertical-align: central;*/
+}
+
+#mainbody {
+    height: calc( 100vh - 5rem );
+}
+
+#displayPage {
     display: table;
+    top: 0;
     width: 100%;
+    height: 100%;
+    padding-right: 0;
 }
 
 #displayPage > div {
     display: table-cell;
 }
 
+#filterBar{
+    vertical-align: top;
+    position: absolute;
+    width: 18rem;
+}
+
+.typefilterbox{
+    width: 5rem;
+    height: 100%;
+}
+
 #FilterContainer {
-    width: 25%;
+    width: 18rem;
     background-color: whitesmoke;
     margin-left: -5px;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    /*position: relative;*/
 }
 
 #ProductDisplayContainer {
 }
+
+.proddisplay {
+    text-align: left;
+    height: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
-.userInput{
-    width: 500px;
+.productcard {
+    width: 15rem;
+    height: 35rem;
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 0.7rem;
+    margin-right: 0.7rem;
+    margin-bottom: 2rem;
+}
+
+.prodcardimage {
+    width: 100%;
+    height: 15rem;
+    vertical-align: top;
+    position: relative;
+    /*background-color: gray;*/
+}
+
+.prodimg {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+}
+
+.prodtitle{
+    margin-bottom: 2rem;
+}
+
+.prodsum {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.userInput {
+    width: 50%;
 }
 
 .searchBtn {

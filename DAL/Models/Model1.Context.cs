@@ -12,7 +12,8 @@ namespace DAL.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+    using System.Data.Objects;
+
     public partial class JooleDatabaseEntities : DbContext
     {
         public JooleDatabaseEntities()
@@ -34,5 +35,23 @@ namespace DAL.Models
         public DbSet<TechSpecFilter> TechSpecFilter { get; set; }
         public DbSet<TypeFilter> TypeFilter { get; set; }
         public DbSet<Users> Users { get; set; }
+
+        public virtual int addUser(string name, string email, string password)
+        {
+            var nameParameter = name != null ?
+                new ObjectParameter("UserName", name) :
+                new ObjectParameter("UserName", typeof(string));
+
+            var emailParameter = email != null ?
+                new ObjectParameter("UserEmail", email) :
+                new ObjectParameter("UserEmail", typeof(string));
+
+            var passwordParameter = password != null ?
+                new ObjectParameter("UserPassword", password) :
+                new ObjectParameter("UserPassword", typeof(string));
+
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("addUser", nameParameter, emailParameter, passwordParameter);
+        }
     }
+   
 }

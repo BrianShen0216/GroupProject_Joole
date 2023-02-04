@@ -10,18 +10,9 @@
     @*<link href="@Url.Content("~/Content/Styles.css")" rel="stylesheet" type="text/css" />*@
 </head>
 <body>
-    @RenderBody()
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-    <script type="text/javascript">
-        console.log("here");
-        $('#FilterForm').submit(function () {
-            console.log("here2");
-            var form = $(this).serialize();
-            $('#ProductDisplayContainer').load('@Url.Action("ApplyFilter", "Home")', form);
-            return false;
-        });
-    </script>
+    @RenderBody()
 </body>
 </html>

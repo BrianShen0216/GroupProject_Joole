@@ -1,16 +1,25 @@
 ﻿@model List<DAL.Models.Products>
 
-<div id="productDisplay">
+<div id="productDisplay" class="container-fluid proddisplay">
     @foreach(var prod in Model)
             {
-                <div id="@prod.ProductID">
-                    <ul>
-                        <li>@Html.DisplayFor(model=>prod.ProductName) </li>
-                        @foreach(var prop in prod.PropertyValue)
-                        { 
-                            <li>@prop.PropertyValue1 @prop.Property.PropertyName</li>
+                <div id="@prod.ProductID" class="card productcard rounded shadow">
+                    <div class="prodcardimage border border-secondary-subtle rounded">
+                        @if (prod.ProductImage != null)
+                        {
+                            <img src="@prod.ProductImage" class="prodimg card-img-top img-fluid" />
+                            @*<img src="~/Image/Electrical/Fans/FanA.png" class="card-img-top img-fluid" />*@
                         }
-                    </ul>
+                    </div>
+                    <div class="card-body" style="padding-left: 0.5rem; padding-right: 0.5rem;">
+                        <h5 class="card-title prodtitle" style="text-align: center;"><b>@prod.ProductName</b></h5>
+                        <ul class="prodsum">
+                            @foreach(var prop in prod.PropertyValue)
+                            { 
+                                <li style="text-align: center; font-size: 14px; padding: 5px;">@prop.PropertyValue1 <b>@prop.Property.PropertyName</b></li>
+                            }
+                        </ul>
+                    </div>
                 </div>
             }
 </div>
