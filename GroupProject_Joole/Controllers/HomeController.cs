@@ -11,9 +11,7 @@ namespace GroupProject_Joole.Controllers
 {
     public class HomeController : Controller
     {
-        //JooleDatabaseEntities jooleDatabaseEntities = new JooleDatabaseEntities();
         BLLClass bLLClass = new BLLClass();
-
         public ActionResult Login()
         {
             return View();
@@ -26,10 +24,9 @@ namespace GroupProject_Joole.Controllers
 
         public ActionResult Search()
         {
-
-            //var categoryList = jooleDatabaseEntities.Category.ToList();
             var categoryList = bLLClass.getCategoryList();
             ViewBag.categoryList = new SelectList(categoryList, "CategoryID", "CategoryName");
+            //tempdata
 
             return View();
         }
@@ -43,35 +40,38 @@ namespace GroupProject_Joole.Controllers
 
         public JsonResult GetSubList(int CategoryID)
         {
-            //jooleDatabaseEntities.Configuration.ProxyCreationEnabled = false;
-            //List<SubCategory> subList = jooleDatabaseEntities.SubCategory.Where(x => x.CategoryID == CategoryID).ToList();
             List<SubCategory> subList = bLLClass.GetSubCategoryList().Where(x => x.CategoryID == CategoryID).ToList();
             return Json(subList, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult Result(CategorySub categorySub)
         {
-            var str = categorySub.userInput.Trim();
-            var userInput = String.Concat(str.Where(s => !Char.IsWhiteSpace(s)));
-            
-            List<Products> productList = null;
-            if(categorySub.SubCategoryID == null)
+            if (ModelState.IsValid)
             {
-                //productList = jooleDatabaseEntities.Products.Where(x => x.ProductName.Contains(userInput)).ToList();
-                productList = bLLClass.getProductsList().Where(x => x.ProductName.Contains(userInput)).Include("Manufacturers").Include("PropertyValue").Include("PropertyValue.Property").ToList();
-            }
-            else
-            {
-                //productList = jooleDatabaseEntities.Products.Where(x => x.SubCategoryID == categorySub.SubCategoryID && x.ProductName.Contains(userInput)).ToList();
-                productList = bLLClass.getProductsList().Where(x => x.SubCategoryID == categorySub.SubCategoryID && x.ProductName.Contains(userInput)).Include("Manufacturers").Include("PropertyValue").Include("PropertyValue.Property").ToList();
-            }
-            //var productList = jooleDatabaseEntities.Products.Where(x => x.SubCategoryID == id && x.ProductName.Contains(userInput)).Include("Manufacturers").Include("PropertyValue").Include("PropertyValue.Property").ToList();
-            //Console.WriteLine(productList);
-            Filters filters = bLLClass.GetFilters(categorySub.SubCategoryID);
-            TempData["Products"] = productList;
-            TempData["Filters"] = filters;
+                var str = categorySub.userInput.Trim();
+                var userInput = String.Concat(str.Where(s => !Char.IsWhiteSpace(s)));
 
-            return View("MainPage");
+                List<Products> productList = null;
+                if (categorySub.SubCategoryID == null)
+                {
+                    productList = bLLClass.getProductsList().Where(x => x.ProductName.Contains(userInput)).Include("Manufacturers").Include("PropertyValue").Include("PropertyValue.Property").ToList();
+                }
+                else
+                {
+                    productList = bLLClass.getProductsList().Where(x => x.SubCategoryID == categorySub.SubCategoryID && x.ProductName.Contains(userInput)).Include("Manufacturers").Include("PropertyValue").Include("PropertyValue.Property").ToList();
+                }
+                
+                if(productList.Count != 0)
+                {
+                    int tempId = productList[0].SubCategoryID;
+                    Filters filters = bLLClass.GetFilters(tempId);
+                    TempData["Products"] = productList;
+                    TempData["Filters"] = filters;
+
+                    return View("MainPage");
+                }
+            }
+            return RedirectToAction("Search");
         }
 
         public ActionResult Summary()
