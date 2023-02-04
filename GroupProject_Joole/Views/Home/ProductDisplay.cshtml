@@ -3,11 +3,12 @@
 <div id="productDisplay" class="container-fluid proddisplay">
     @foreach(var prod in Model)
             {
-                <div id="@prod.ProductID" class="card productcard rounded">
-                    <div class="prodcardimage rounded">
-                        @if(prod.ProductImage!=null)
+                <div id="@prod.ProductID" class="card productcard rounded shadow">
+                    <div class="prodcardimage border border-secondary-subtle rounded">
+                        @if (prod.ProductImage != null)
                         {
-                            <img src="@prod.ProductImage" class="card-img-top" />
+                            <img src="@prod.ProductImage" class="prodimg card-img-top img-fluid" />
+                            @*<img src="~/Image/Electrical/Fans/FanA.png" class="card-img-top img-fluid" />*@
                         }
                     </div>
                     <div class="card-body" style="padding-left: 0.5rem; padding-right: 0.5rem;">
@@ -15,7 +16,7 @@
                         <ul class="prodsum">
                             @foreach(var prop in prod.PropertyValue)
                             { 
-                                <li style="text-align: center; font-size: 14px;">@prop.PropertyValue1 <b>@prop.Property.PropertyName</b></li>
+                                <li style="text-align: center; font-size: 14px; padding: 5px;">@prop.PropertyValue1 <b>@prop.Property.PropertyName</b></li>
                             }
                         </ul>
                     </div>
