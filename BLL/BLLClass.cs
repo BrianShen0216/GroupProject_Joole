@@ -58,17 +58,20 @@ namespace BLL
             List<Products> result = products;
             foreach(var tf in filters.TypeFilters)
             {
-                result = result.Where(p =>
+                if (tf.Value != null && tf.Value.Length > 0)
                 {
-                    foreach(var pv in p.PropertyValue)
+                    result = result.Where(p =>
                     {
-                        if (pv.PropertyID==tf.PropertyID && pv.Property.IsType == true && pv.PropertyValue1==tf.Value)
+                        foreach(var pv in p.PropertyValue)
                         {
-                            return true;
+                            if (pv.PropertyID==tf.PropertyID && pv.Property.IsType == true && pv.PropertyValue1.ToLower()==tf.Value.ToLower())
+                            {
+                                return true;
+                            }
                         }
-                    }
-                    return false;
-                }).ToList();
+                        return false;
+                    }).ToList();
+                }
             }
             foreach(var tsf in filters.TechSpecFilters)
             {

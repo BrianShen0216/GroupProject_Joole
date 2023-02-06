@@ -25,7 +25,7 @@
                 {
                     <div class="border border-secondary-subtle rounded">
                         <div style="padding-top: 5px; padding-bottom: 5px; padding-left: 1rem;">
-                            <div style="display: inline-block; width: 10rem">@Html.Label(Model.TypeFilters[i].TypeName)</div>
+                            <div style="display: inline-block; width: 10rem">@Html.Label(Model.TypeFilters[i].PropertyName)</div>
                             <div style="display: inline-block;">@Html.TextBoxFor(m => m.TypeFilters[i].Value, new { @class = "typefilterbox" })</div>
                             @Html.HiddenFor(m => m.TypeFilters[i].PropertyID)
                         </div>
@@ -54,10 +54,10 @@
             }
             <div style="margin-top: 1rem;">
                 <div style="float: left; padding-left: 1rem; display: inline-block">
-                    <button id="filterBtn" type="submit" class="btn btn-primary">Apply Filter</button>
+                    <button id="filterBtn" type="submit">Apply Filter</button>
                 </div>
                 <div style="float: right; padding-right: 1rem; display: inline-block">
-                    <button id="clrBtn" type="button" class="btn btn-primary" >Clear</button>
+                    <button id="clrBtn" type="button" >Clear</button>
                 </div>
             </div>
         }

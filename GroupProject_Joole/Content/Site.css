@@ -124,6 +124,8 @@ textarea {
     transform: translate(-50%, -50%);
     background-size: cover;
     overflow: hidden;
+    max-height: 100%;
+    width: auto;
 }
 
 .prodtitle{
