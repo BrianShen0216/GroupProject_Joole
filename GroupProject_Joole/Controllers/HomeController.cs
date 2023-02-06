@@ -12,18 +12,18 @@ using GroupProject_Joole.Models;
 using System.Collections;
 
 
+
 namespace GroupProject_Joole.Controllers
 {
     public class HomeController : Controller
     {
-        protected JooleDatabaseEntities userEntity = new JooleDatabaseEntities();
+        //protected JooleDatabaseEntities userEntity = new JooleDatabaseEntities();
         //JooleDatabaseEntities jooleDatabaseEntities = new JooleDatabaseEntities();
         BLLClass bLLClass = new BLLClass();
 
         [HttpGet]
         public ActionResult Login()
         {
-            //LoginUser loginUser = new LoginUser();
             ModelUser loginUser = new ModelUser();
             return View("Login", loginUser);
         }
@@ -31,9 +31,10 @@ namespace GroupProject_Joole.Controllers
         [HttpPost]
         public ActionResult Login(ModelUser loginUser)
         {
+            var userList = bLLClass.getUserList();
             if(!ModelState.IsValid)
             {
-                if(userEntity.Users.Where(m => m.UserName == loginUser.UserName &&
+                if(userList.Where(m => m.UserName == loginUser.UserName &&
                 m.UserPassword == loginUser.UserPassword).FirstOrDefault() == null)
                 {
                     ModelState.AddModelError("Error", "Username or password is not matching");
@@ -55,24 +56,19 @@ namespace GroupProject_Joole.Controllers
         {
             if (ModelState.IsValid)
             {
-                Users user = new Users();
-                user.UserName = ojbUser.UserName;
-                user.UserEmail = ojbUser.UserEmail;
-                user.UserPassword = ojbUser.UserPassword;
-                userEntity.Users.Add(user);
-                userEntity.SaveChanges();
-                return RedirectToAction("GetInfor", user);
+                var user = bLLClass.AddUser(ojbUser);
+                return RedirectToAction("Login");
+                /*return RedirectToAction("GetInfor", user);*/
             }
             return View();
         }
 
-        public ActionResult GetInfor(Users user)
+/*        public ActionResult GetInfor(Users user)
         {
-            //userEntity.addUser(ojbUser.UserName, ojbUser.UserEmail, ojbUser.UserPassword);
             var list = userEntity.Users.ToList();
             
             return View(list);                
-        }
+        }*/
 
         /*public ActionResult SignUp()
         {

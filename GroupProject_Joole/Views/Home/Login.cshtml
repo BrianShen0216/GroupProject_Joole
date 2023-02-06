@@ -1,5 +1,5 @@
-﻿@*@model GroupProject_Joole.Models.LoginUser*@
-@model GroupProject_Joole.Models.ModelUser
+﻿@*@model GroupProject_Joole.Models.ModelUser*@
+@model DAL.Models.ModelUser
 
 @{
     ViewBag.Title = "Login";
@@ -14,25 +14,28 @@
 
 
 
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
-            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10 editor">
-                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.UserName, new { style = "width:900px", placeholder = "User Name", @class = "form-input" })
                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <br />
         <div class="form-group">
-            @Html.LabelFor(model => model.UserPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+            @*@Html.LabelFor(model => model.UserPassword, htmlAttributes: new { @class = "control-label col-md-2"})*@
             <div class="col-md-10 editor">
-                @Html.EditorFor(model => model.UserPassword, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.PasswordFor(model => model.UserPassword, new { style = "width:900px", placeholder = "User Password", @class = "form-input" })
+                @*@Html.EditorFor(model => model.UserPassword, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -74,9 +77,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="justify-content-xxl-center">
-                        <p><label>Image Preview</label></p>
+                        @*<p><label>Image Preview</label></p>*@
                         <img src="~/Image/Image.png" width="120" height="120" alt="" />
-                        <p><label>Your Profile Pic</label></p>
+                        @*<p><label>Your Profile Pic</label></p>*@
                         <button>Choose File</button><label>No file choseen</label>
                     </div>
 
@@ -127,7 +130,7 @@
 
 
 @*@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+        @Scripts.Render("~/bundles/jqueryval")
+    }
 
 *@

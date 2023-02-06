@@ -8,13 +8,34 @@ using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace BLL
 {
     public partial class BLLClass
     {
         //JooleDatabaseEntities jooleDatabaseEntities = new JooleDatabaseEntities();
-        DALClass dALClass = new DALClass();
+        DALClass dalClass = new DALClass();
+        
+        public List<Users> getUserList() 
+        {
+            //DbContext jooleDatabaseEntities = dalClass.DAL_Entity();
+            
+            /*var userList = dalClass.getUsers();
+            return userList.ToList();*/
+            //return jooleDatabaseEntities.Users.ToList();
+            return dalClass.Users.ToList();
+        }
 
+        public Users AddUser(ModelUser ojbUser)
+        {
+            Users user = new Users();
+            user.UserName = ojbUser.UserName;
+            user.UserPassword = ojbUser.UserPassword;
+            user.UserEmail = ojbUser.UserEmail;
+            dalClass.Users.Add(user);
+            //dalClass.SaveChanges();
+            return user;
+        }
 
         public List<Category> getCategoryList()
         {

@@ -29,5 +29,12 @@ namespace DAL
         {
             return jooleDatabaseEntities.Products;
         }
+        JooleDatabaseEntities jooleDatabaseEntities = new JooleDatabaseEntities();
+        //DbSet<Users> Users = jooleDatabaseEntities.Users;
+        /*public DbContext DAL_Entity()
+        {
+            return jooleDatabaseEntities;
+        }*/
+        public DbSet<Users> Users { get; set; }
     }
 }
