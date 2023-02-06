@@ -39,7 +39,7 @@ namespace BLL
 
         public List<Category> getCategoryList()
         {
-            return dalClass.GetCategories().ToList();
+            return dalClass.GetCategories();
             //return jooleDatabaseEntities.Category.ToList();
         }
 
