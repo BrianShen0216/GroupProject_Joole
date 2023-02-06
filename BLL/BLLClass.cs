@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class BLLClass
+    public partial class BLLClass
     {
         JooleDatabaseEntities jooleDatabaseEntities = new JooleDatabaseEntities();
 

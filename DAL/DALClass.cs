@@ -10,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class DALClass
+    public partial class DALClass
     {
+        JooleDatabaseEntities jooleDatabaseEntities = new JooleDatabaseEntities();
     }
 }

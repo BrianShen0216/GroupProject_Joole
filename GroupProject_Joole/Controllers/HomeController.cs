@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using DAL.Models;
 using System.Web.UI.WebControls;
 using GroupProject_Joole.Models;
+using System.Collections;
 
 
 namespace GroupProject_Joole.Controllers
@@ -138,13 +139,25 @@ namespace GroupProject_Joole.Controllers
         {
             return View();
         }
-        public ActionResult Details()
+
+        public ActionResult ReturnMainPage()
         {
-            return View();
+            return View("MainPage");
         }
-        public ActionResult Compare()
+
+        public ActionResult Details(int DetailID)
         {
-            return View();
+            List<Products> products = (List<Products>)TempData.Peek("Products");
+            Products res = products.Where(m=>m.ProductID == DetailID).FirstOrDefault();
+            return PartialView("Details",res);
+        }
+        public ActionResult Compare(FormCollection form)
+        {
+            string[] str = form["CompareList"].Split(',');
+            List<int> CprID = bLLClass.GetCprList(str);
+            List<Products> products = (List<Products>)TempData.Peek("Products");
+            List<Products> res = products.Where(m => CprID.Contains(m.ProductID)).ToList();
+            return PartialView("Compare",res);
         }
     }
 
