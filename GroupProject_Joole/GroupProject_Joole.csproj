@@ -158,6 +158,7 @@
     <Content Include="Image\Electrical\Fans\FanF.png" />
     <Content Include="Image\Electrical\Fans\FanG.png" />
     <Content Include="Image\Electrical\Fans\FanH.jpg" />
+    <Content Include="Image\google.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -226,6 +227,8 @@
     <Content Include="Views\Home\CopySignUp.cshtml" />
     <Content Include="Views\Shared\LogIn.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
+    <Content Include="Views\Home\MainSearch.cshtml" />
+    <Content Include="Views\Home\ErrorPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,7 +10,19 @@
     </header>
     @* ViewBag: Products: List<Products>, Filters: {List<TypeFilterWithValue>, List<TechSpecFilterWithValue>} *@
     @*@Html.Partial("DisplayPage", new ViewDataDictionary { { "Products", ViewBag.Products }, { "Filters", ViewBag.Filters } })*@
-    <div id="mainbody" class="mainbody">
-        @Html.Partial("DisplayPage")
-    </div>
+    @{
+        if (ViewBag.nothing != null)
+        {
+            <div>
+                @Html.Partial("ErrorPage")
+            </div>
+        }
+        else
+        {
+            <div id="mainbody" class="mainbody">
+                @Html.Partial("DisplayPage")
+            </div>
+        }
+    }
+
 </div>

@@ -12,5 +12,22 @@ namespace DAL
 {
     public class DALClass
     {
+        JooleDatabaseEntities jooleDatabaseEntities = new JooleDatabaseEntities();
+
+        public DbSet<Category> GetCategories()
+        {
+            return jooleDatabaseEntities.Category;
+        }
+
+        public DbSet<SubCategory> GetSubCategories()
+        {
+            jooleDatabaseEntities.Configuration.ProxyCreationEnabled = false;
+            return jooleDatabaseEntities.SubCategory;
+        }
+
+        public DbSet<Products> GetProducts()
+        {
+            return jooleDatabaseEntities.Products;
+        }
     }
 }

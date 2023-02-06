@@ -14,7 +14,7 @@ namespace DAL.Models
 
         public Nullable<int> SubCategoryID { get; set; }
 
-        [Required(ErrorMessage = "Please type something")]
+        [Required(ErrorMessage = "Please Check Your Input")]
         public string userInput { get; set; }
     }
 }

@@ -7,15 +7,19 @@
     @using (Html.BeginForm("Result","Home"))
 {
 <fieldset>
-    <div>
+    <div class="input-wrapper">
         @if (ViewBag.categoryList != null)
         {
             @Html.DropDownListFor(model => model.CategoryID, ViewBag.categoryList as SelectList, "Category", new { @class = "categoryDrop" })
         }
-        @Html.EditorFor(model => model.userInput, new { htmlAttributes = new { @class = "userInput" } })
-        @Html.ValidationMessageFor(model => model.userInput, "", new { @class = "text-danger" })
+        @Html.EditorFor(model => model.userInput, new { htmlAttributes = new { @class = "input", @placeholder = "Type here..." } })
         @Html.DropDownListFor(model => model.SubCategoryID, new SelectList(" "), "SubCategory", new { @class = "SubCategoryDrop" })
-        <input type="submit" value="Go" class="searchBtn" />
+        @*<input type="submit" value="Go" class="searchBtn" />*@
+        <button type="submit" class="searchBtn">Go</button>
+    </div>
+    <div>
+        @Html.ValidationMessageFor(model => model.userInput, "", new { @class = "text-danger" })
+        
     </div>
 </fieldset>
 }

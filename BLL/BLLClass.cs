@@ -1,4 +1,5 @@
-﻿using DAL.Models;
+﻿using DAL;
+using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,23 +12,25 @@ namespace BLL
 {
     public class BLLClass
     {
-        JooleDatabaseEntities jooleDatabaseEntities = new JooleDatabaseEntities();
+        //JooleDatabaseEntities jooleDatabaseEntities = new JooleDatabaseEntities();
+        DALClass dALClass = new DALClass();
 
 
         public List<Category> getCategoryList()
         {
-            return jooleDatabaseEntities.Category.ToList();
+            return dALClass.GetCategories().ToList();
+            //return jooleDatabaseEntities.Category.ToList();
         }
 
         public DbSet<SubCategory> GetSubCategoryList()
         {
-            jooleDatabaseEntities.Configuration.ProxyCreationEnabled = false;
-            return jooleDatabaseEntities.SubCategory;
+            
+            return dALClass.GetSubCategories();
         }
 
         public DbSet<Products> getProductsList()
         {
-            return jooleDatabaseEntities.Products;
+            return dALClass.GetProducts();
         }
         public List<Products> FilterProducts(List<Products> products, Filters filters)
         {
@@ -74,7 +77,7 @@ namespace BLL
         public Filters GetFilters(int subCategoryID)
         {
             Filters filters = new Filters();
-            var subList = jooleDatabaseEntities.SubCategory.Where(sc => sc.SubCategoryID == subCategoryID)
+            var subList = dALClass.GetSubCategories().Where(sc => sc.SubCategoryID == subCategoryID)
                     .Include("TypeFilter")
                     .Include("TypeFilter.Property")
                     .Include("TechSpecFilter")

@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewBag.Title = "MainSearch";
+    Layout = "~/Views/Shared/_DummyLayout.cshtml";
+}
+
+<div id="MainSearch">
+    <img src="~/Image/google.jpg" class="googleImg"/>
+    <div class="centerView">
+        @Html.Action("Search")
+    </div>
+    <div>
+        <p class="errorMessage">@ViewBag.errorMessage</p>
+    </div>
+</div>
+

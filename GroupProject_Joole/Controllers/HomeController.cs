@@ -40,7 +40,7 @@ namespace GroupProject_Joole.Controllers
                     //return RedirectToAction("SignUp");
                 }
             }
-            return RedirectToAction("Search");
+            return View("MainSearch");
         }
 
         public ActionResult SignUp()
@@ -78,7 +78,10 @@ namespace GroupProject_Joole.Controllers
 
             return View();
         }*/
-
+        public ActionResult MainSearch()
+        {
+            return View("MainSearch");
+        }
         public ActionResult Search()
         {
             var categoryList = bLLClass.getCategoryList();
@@ -127,7 +130,15 @@ namespace GroupProject_Joole.Controllers
                     return View("MainPage");
                 }
             }
-            return RedirectToAction("Search");
+            if(categorySub.userInput == null)
+            {
+                ViewBag.errorMessage = "Please Check your input!!!!";
+                return View("MainSearch");
+            }
+            //TempData["Products"] = new List<Products>();
+            //TempData["Filters"] = new Filters();
+            ViewBag.nothing = true;
+            return View("MainPage");
         }
 
         [HttpGet]
