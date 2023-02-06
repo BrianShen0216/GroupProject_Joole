@@ -19,14 +19,48 @@
     body {
         height: 100vh;
         width: 100%;
-        background: linear-gradient(#0094ff,white);
-        //background-color: green;
+        background: linear-gradient(#322be0,white);
+    }
+    p {
+        color: #282727;
+        position: absolute;
+        top:430px;
+        left:470px;
+    }
+    .container {
+        height: 160px;      
+    }
+    .left-circle {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: #282727;
+        position: absolute;
+        top: 330px;
+        left: 560px;
+    }
+    .right-circle {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background: white;
+        position: absolute;
+        top: 320px;
+        left: 590px;
     }
 </style>
+
 <body class="intro">
     <div class="layout"></div>
     <div class="intro"></div>
-
+    <div class="container">
+        <h1 style="font-size: 100px; position: absolute; left:530px; top:300px;">j</h1>
+        <div class="left-circle"></div>
+        <div class="right-circle"></div>
+        <h1 style="font-size: 100px; position: absolute; left:660px; top:320px;">le</h1> 
+        <p><b>Building Product Selection Platform</b></p>
+    </div>
+    
 
     @Html.Partial("LoginPartial")
 

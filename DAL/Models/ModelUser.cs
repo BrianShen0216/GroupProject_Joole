@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace GroupProject_Joole.Models
+namespace DAL.Models
 {
     public class ModelUser
     {
@@ -22,6 +23,6 @@ namespace GroupProject_Joole.Models
         [DisplayName("Confirm Password")]
         [Compare("UserPassword", ErrorMessage = "Confirm password doesn't match")]
         public string UserConPassword { get; set; }
-        
+
     }
 }

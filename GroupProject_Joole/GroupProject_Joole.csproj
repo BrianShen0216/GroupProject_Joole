@@ -128,8 +128,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\LoginUser.cs" />
-    <Compile Include="Models\ModelUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -209,7 +207,6 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
@@ -221,14 +218,9 @@
     <Content Include="Views\Shared\_DummyLayout.cshtml" />
     <Content Include="Views\Home\Result.cshtml" />
     <Content Include="Views\Home\ViewTest.cshtml" />
-    <Content Include="Views\Home\Login1.cshtml" />
-    <Content Include="Views\Home\CreateUser.cshtml" />
     <Content Include="Views\Home\GetInfor.cshtml" />
     <Content Include="Views\Shared\LoginPartial.cshtml" />
-    <Content Include="Views\Shared\SignUp.cshtml" />
-    <Content Include="Views\Home\CopySignUp.cshtml" />
     <Content Include="Views\Shared\LogIn.cshtml" />
-    <Content Include="Views\Shared\Header.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
