@@ -229,6 +229,8 @@
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Home\MainSearch.cshtml" />
     <Content Include="Views\Home\ErrorPage.cshtml" />
+    <Content Include="Views\Home\Compare.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

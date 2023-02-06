@@ -1,0 +1,71 @@
+﻿@model List<DAL.Models.Products>
+
+@{
+    Layout = "~/Views/Shared/_DummyLayout.cshtml";
+}
+
+<header id="mainheader" class="mainheader bg-primary">
+    <div id="searchcontainer">
+        @Html.Action("Search")
+    </div>
+</header>
+
+<div id="productompare" class="container-fluid proddisplay">
+    <table>
+        <tr>
+            <th></th>
+            @foreach (var p in Model)
+            {
+                <td><img src="@p.ProductImage" class="card-img-top" /> </td>
+            }
+        </tr>
+        <tr>
+            <th>Product Name</th>
+            @foreach (var p in Model)
+            {
+                <td>@p.ProductName</td>
+            }
+        </tr>
+        <tr>
+            <th>Product Series</th>
+            @foreach (var p in Model)
+            {
+                <td>@p.Series</td>
+            }
+        </tr>
+        <tr>
+            <th>Product Model</th>
+            @foreach (var p in Model)
+            {
+                <td>@p.Model</td>
+            }
+        </tr>
+        <tr>
+            <th>Model Year</th>
+            @foreach (var p in Model)
+            {
+                <td>@p.ModelYear</td>
+            }
+        </tr>
+        <tr>
+            <th>Product Manufacturer</th>
+            @foreach (var p in Model)
+            {
+                <td>@p.Manufacturers.ManufacturerName</td>
+            }
+        </tr>
+        <tr>
+            <th>Product Details</th>
+            @foreach (var p in Model)
+            {
+                <td>
+                    @foreach (var ppt in p.PropertyValue)
+                    {
+                        <label style="text-align: center; font-size: 14px;">@ppt.PropertyValue1 <b>@ppt.Property.PropertyName</b></label><br><br>
+                    }
+                </td>
+            }
+        </tr>
+    </table>
+    <button>@Html.ActionLink("Back to search result", "ReturnMainPage", "Home")</button>
+</div>
