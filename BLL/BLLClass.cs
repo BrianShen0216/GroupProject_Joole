@@ -23,7 +23,7 @@ namespace BLL
             /*var userList = dalClass.getUsers();
             return userList.ToList();*/
             //return jooleDatabaseEntities.Users.ToList();
-            return dalClass.Users.ToList();
+            return dalClass.GetUsers();
         }
 
         public Users AddUser(ModelUser ojbUser)
@@ -32,26 +32,26 @@ namespace BLL
             user.UserName = ojbUser.UserName;
             user.UserPassword = ojbUser.UserPassword;
             user.UserEmail = ojbUser.UserEmail;
-            dalClass.Users.Add(user);
+            dalClass.AddUsers(user);
             //dalClass.SaveChanges();
             return user;
         }
 
         public List<Category> getCategoryList()
         {
-            return dALClass.GetCategories().ToList();
+            return dalClass.GetCategories().ToList();
             //return jooleDatabaseEntities.Category.ToList();
         }
 
         public DbSet<SubCategory> GetSubCategoryList()
         {
             
-            return dALClass.GetSubCategories();
+            return dalClass.GetSubCategories();
         }
 
         public DbSet<Products> getProductsList()
         {
-            return dALClass.GetProducts();
+            return dalClass.GetProducts();
         }
         public List<Products> FilterProducts(List<Products> products, Filters filters)
         {
@@ -98,7 +98,7 @@ namespace BLL
         public Filters GetFilters(int subCategoryID)
         {
             Filters filters = new Filters();
-            var subList = dALClass.GetSubCategories().Where(sc => sc.SubCategoryID == subCategoryID)
+            var subList = dalClass.GetSubCategories().Where(sc => sc.SubCategoryID == subCategoryID)
                     .Include("TypeFilter")
                     .Include("TypeFilter.Property")
                     .Include("TechSpecFilter")

@@ -29,12 +29,21 @@ namespace DAL
         {
             return jooleDatabaseEntities.Products;
         }
-        JooleDatabaseEntities jooleDatabaseEntities = new JooleDatabaseEntities();
         //DbSet<Users> Users = jooleDatabaseEntities.Users;
         /*public DbContext DAL_Entity()
         {
             return jooleDatabaseEntities;
         }*/
-        public DbSet<Users> Users { get; set; }
+        //public DbSet<Users> Users { get; set; }
+        public List<Users> GetUsers()
+        {
+            return jooleDatabaseEntities.Users.ToList();
+        }
+
+        public void AddUsers(Users users)
+        {
+            jooleDatabaseEntities.Users.Add(users);
+            jooleDatabaseEntities.SaveChanges();
+        }
     }
 }
