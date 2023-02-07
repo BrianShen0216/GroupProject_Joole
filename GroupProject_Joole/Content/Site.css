@@ -279,4 +279,12 @@ button:active {
     color: red;
     text-align: center;
 }
- 
+
+.comparedisplay {
+    text-align: left;
+    height: 100%;
+}
+
+.detaildisplay {
+    text-align: center;
+}

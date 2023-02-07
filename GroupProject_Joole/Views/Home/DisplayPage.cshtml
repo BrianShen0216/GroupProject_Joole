@@ -2,7 +2,7 @@
     <div id="FilterContainer" class="border border-secondary-subtle rounded">
         @Html.Partial("FilterBar", TempData.Peek("Filters"))
     </div>
-    <div>
+    <div id="ProductDisplayContainer">
         @Html.Partial("ProductDisplay", TempData.Peek("Products"))
     </div>
 </div>
