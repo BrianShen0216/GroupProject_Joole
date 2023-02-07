@@ -14,9 +14,9 @@ namespace DAL
     {
         JooleDatabaseEntities jooleDatabaseEntities = new JooleDatabaseEntities();
 
-        public DbSet<Category> GetCategories()
+        public List<Category> GetCategories()
         {
-            return jooleDatabaseEntities.Category;
+            return jooleDatabaseEntities.Category.ToList();
         }
 
         public DbSet<SubCategory> GetSubCategories()
