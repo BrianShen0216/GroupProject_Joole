@@ -230,6 +230,7 @@
     <Content Include="Views\Home\ErrorPage.cshtml" />
     <Content Include="Views\Home\Compare.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\CheckBoxConsole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,46 +1,53 @@
 ﻿@model DAL.Models.Products
 
-<div style="width:200px height:200px">
-    <img src="@Model.ProductImage" class="rounded" />
-</div>
-<br>
-<div>
-    <div style="width:40%">
-        <table>
-            <tr><th>Basic Information</th></tr>
-            <tr>
-                <th>Name</th>
-                <td>@Model.ProductName</td>
-            </tr>
-            <tr>
-                <th>Series</th>
-                <td>@Model.Series</td>
-            </tr>
-            <tr>
-                <th>Model</th>
-                <td>@Model.Model</td>
-            </tr>
-            <tr>
-                <th>ModelYear</th>
-                <td>@Model.ModelYear</td>
-            </tr>
-            <tr>
-                <th>Manufacturer</th>
-                <td>@Model.Manufacturers.ManufacturerName</td>
-            </tr>
-        </table>
+<div  class="centerView">
+    <div clas="centerView" style="display:inline-block">
+        <img src="@Model.ProductImage" style="max-height:600px; max-width:600px"/>
     </div>
-    <div style="width:40%">
-        <table>
-            <tr><th>Product Details</th></tr>
-            @foreach (var ppt in Model.PropertyValue)
-            {
+    <div style="display:inline-block">
+        <div style="display:block">
+            <table class="table-bordered">
+                <tr><th>Basic Information</th></tr>
                 <tr>
-                    <th>@ppt.Property.PropertyName</th>
-                    <td>@ppt.PropertyValue1</td>
+                    <th>Name</th>
+                    <td>@Model.ProductName</td>
                 </tr>
-            }
-        </table>
+                <tr>
+                    <th>Series</th>
+                    <td>@Model.Series</td>
+                </tr>
+                <tr>
+                    <th>Model</th>
+                    <td>@Model.Model</td>
+                </tr>
+                <tr>
+                    <th>ModelYear</th>
+                    <td>@Model.ModelYear</td>
+                </tr>
+                <tr>
+                    <th>Manufacturer</th>
+                    <td>@Model.Manufacturers.ManufacturerName</td>
+                </tr>
+            </table>
+        </div> 
+    <br />
+        <div style="display:block">
+            <table class="table-bordered">
+                <tr><th>Product Details</th></tr>
+                @foreach (var ppt in Model.PropertyValue)
+                {
+                    <tr>
+                        <th>@ppt.Property.PropertyName</th>
+                        <td>@ppt.PropertyValue1</td>
+                    </tr>
+                }
+            </table>
+        </div>
     </div>
+    <div style="display:block; text-align:center;">
+        <button>@Html.ActionLink("Back to search result", "ReturnMainPage", "Home")</button>
+    </div>
+
 </div>
-<button>@Html.ActionLink("Back to search result", "ReturnMainPage", "Home")</button>
+
+

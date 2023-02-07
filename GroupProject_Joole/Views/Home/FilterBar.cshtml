@@ -60,6 +60,9 @@
                     <button id="clrBtn" type="button" class="btn btn-primary" >Clear</button>
                 </div>
             </div>
+            <div>
+                <button id="SubmitButton" style="margin:25px;">Compare Selected</button>
+            </div>
         }
     }
     <script type="text/javascript">
@@ -73,5 +76,9 @@
             $('#mainbody').load('@Url.Action("ReturnDisplayPage", "Home")');
             return false;
         })
+
+        $("#SubmitButton").click(function () {
+            $("#CompareForm").submit();
+        });
     </script>
 </div>
