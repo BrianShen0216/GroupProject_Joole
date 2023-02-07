@@ -11,12 +11,12 @@
 </header>
 
 <div id="productompare" class="container-fluid proddisplay">
-    <table>
+    <table class="table-bordered">
         <tr>
             <th></th>
             @foreach (var p in Model)
             {
-                <td><img src="@p.ProductImage" class="card-img-top" /> </td>
+                <td><img src="@p.ProductImage" class="card-img-top" style="max-height:300px; max-width:300px"/> </td>
             }
         </tr>
         <tr>
