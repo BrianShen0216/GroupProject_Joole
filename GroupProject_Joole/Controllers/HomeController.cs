@@ -6,7 +6,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using DAL.Models;
 using System.Web.UI.WebControls;
 using System.Collections;
 
@@ -16,8 +15,6 @@ namespace GroupProject_Joole.Controllers
 {
     public class HomeController : Controller
     {
-        //protected JooleDatabaseEntities userEntity = new JooleDatabaseEntities();
-        //JooleDatabaseEntities jooleDatabaseEntities = new JooleDatabaseEntities();
         BLLClass bLLClass = new BLLClass();
 
         [HttpGet]
@@ -38,7 +35,6 @@ namespace GroupProject_Joole.Controllers
                 {
                     ModelState.AddModelError("Error", "Username or password is not matching");
                     return View();
-                    //return RedirectToAction("SignUp");
                 }
             }
             return View("MainSearch");
@@ -62,18 +58,6 @@ namespace GroupProject_Joole.Controllers
             return View();
         }
 
-/*        public ActionResult GetInfor(Users user)
-        {
-            var list = userEntity.Users.ToList();
-            
-            return View(list);                
-        }*/
-
-        /*public ActionResult SignUp()
-        {
-
-            return View();
-        }*/
         public ActionResult MainSearch()
         {
             return View("MainSearch");
@@ -131,8 +115,6 @@ namespace GroupProject_Joole.Controllers
                 ViewBag.errorMessage = "Please Check your input!!!!";
                 return View("MainSearch");
             }
-            //TempData["Products"] = new List<Products>();
-            //TempData["Filters"] = new Filters();
             ViewBag.nothing = true;
             return View("MainPage");
         }

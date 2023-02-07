@@ -13,16 +13,10 @@ namespace BLL
 {
     public partial class BLLClass
     {
-        //JooleDatabaseEntities jooleDatabaseEntities = new JooleDatabaseEntities();
         DALClass dalClass = new DALClass();
         
         public List<Users> getUserList() 
         {
-            //DbContext jooleDatabaseEntities = dalClass.DAL_Entity();
-            
-            /*var userList = dalClass.getUsers();
-            return userList.ToList();*/
-            //return jooleDatabaseEntities.Users.ToList();
             return dalClass.GetUsers();
         }
 
@@ -33,14 +27,12 @@ namespace BLL
             user.UserPassword = ojbUser.UserPassword;
             user.UserEmail = ojbUser.UserEmail;
             dalClass.AddUsers(user);
-            //dalClass.SaveChanges();
             return user;
         }
 
         public List<Category> getCategoryList()
         {
             return dalClass.GetCategories();
-            //return jooleDatabaseEntities.Category.ToList();
         }
 
         public DbSet<SubCategory> GetSubCategoryList()

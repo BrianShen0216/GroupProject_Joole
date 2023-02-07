@@ -9,7 +9,6 @@
         </div>
     </header>
     <div>
-        @* ViewBag: Products: List<Products>, Filters: {List<TypeFilterWithValue>, List<TechSpecFilterWithValue>} *@
         @*@Html.Partial("DisplayPage", new ViewDataDictionary { { "Products", ViewBag.Products }, { "Filters", ViewBag.Filters } })*@
         @{
             if (ViewBag.nothing != null)
