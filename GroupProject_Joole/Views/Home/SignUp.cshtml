@@ -10,7 +10,7 @@
 <style>
     /*web background*/
     body {
-        height: 100vh;
+        height: 130vh;
         width: 100%;
         background: linear-gradient(#322be0,white);
     }
@@ -41,6 +41,21 @@
     P {
         margin-bottom: 2.5px;
     }
+    .center {
+        height:100%;
+        display:flew;
+        align-items:center;
+        justify-content:center;
+    }
+    .form-input {
+        width:200px;
+        padding:5px;
+        background:white;
+    }
+    .form-input img {
+        width:100%;
+    }
+
 </style>
 
 
@@ -48,7 +63,7 @@
 <div class="navbar navbar-inverse navbar-fixed-top"></div>
 
 @*<button id="clkbutton" type="button">Back</button>*@
-<button class="btn btn-primary" onclick="location.href='@Url.Action("Login","Home")'">Back</button>
+<button type="button" onclick="location.href='@Url.Action("Login","Home")'">Back</button>
 
 <div class="container">
     <div class="row row-centered">
@@ -59,14 +74,20 @@
                 <div class="d-flex aligns-items-center justify-content-center">
                     <label>Image Preview</label>
                 </div>
-                <div class="d-flex aligns-items-center justify-content-center">
-                    <img src="~/Image/Image.png" width="120" height="120" alt="" />
+                <div class="center d-flex aligns-items-center justify-content-center">
+                    <div class="form-input d-flex aligns-items-center justify-content-center">
+                        <div class="preview">
+                            @*<img src="~/Image/Image.png" width="120" height="120" alt="" />*@
+                            <img id="file-preview" />
+                        </div>
+                    </div>
                 </div>
+                    
                 <div class="d-flex aligns-items-center justify-content-center">
                     <label>Your Profile Pic</label>
                 </div>
                 <div class="d-flex aligns-items-center justify-content-center">
-                    <button>Choose File</button><label>No file choseen</label>
+                    <input type="file" id="file-ip-1" accept="image/*" onchange="showPreview(event);">
                 </div>
 
                 @using (Html.BeginForm())
@@ -74,8 +95,9 @@
                     @Html.AntiForgeryToken()
                     <div class="form-horizontal">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        <div class="form-label">
+                        <div class="form-group">
                             @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label float-start" })
+                            <br />
                         </div>
                         <div class="col-md-offset-4">
                             @Html.TextBoxFor(model => model.UserName, new { @class = "form-control float-end" })
@@ -87,21 +109,20 @@
 
                         <div class="">
                             @Html.LabelFor(model => model.UserEmail, htmlAttributes: new { @class = "control-label float-start" })
+                            <br />
                             <div class="col-md-offset-4">
-                                @Html.EditorFor(model => model.UserEmail, new { htmlAttributes = new { @class = "form-control float-end" } })
+                                @Html.TextBoxFor(model => model.UserEmail, new { @class = "form-control float-end" })
                                 @Html.ValidationMessageFor(model => model.UserEmail, "", new { @class = "text-danger" })
                             </div>
                         </div>
 
                         <br />
-                        <br />
-
                         <div class="form-group">
                             @Html.LabelFor(model => model.UserPassword, htmlAttributes: new { @class = "control-label float-start" })
                             <br />
                             <div class="col-md-offset-4">
                                 @*@Html.PasswordFor(model => model.UserPassword, new { style = "width:940px", @class = "form-input" })*@
-                                @Html.EditorFor(model => model.UserPassword, new { htmlAttributes = new { @class = "form-control float-end" } })
+                                @Html.PasswordFor(model => model.UserPassword, new { @class = "form-control float-end" })
                                 @Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -113,7 +134,7 @@
                             <br />
                             <div class="col-md-offset-4">
                                 @*@Html.PasswordFor(model => model.UserConPassword, new { style = "width:940px", @class = "form-input" })*@
-                                @Html.EditorFor(model => model.UserConPassword, new { htmlAttributes = new { @class = "form-control float-end" } })
+                                @Html.PasswordFor(model => model.UserConPassword, new { @class = "form-control float-end" } )
                                 @Html.ValidationMessageFor(model => model.UserConPassword, "", new { @class = "text-danger" })
                             </div>
 
@@ -125,7 +146,8 @@
                         <div class="form-group ">
                             <div class="float-end">
                                 <br />
-                                <input type="submit" value="Create" class="btn btn-primary" />
+                                <button type="submit">Create</button>
+                                @*<input type="submit" value="Create" class="btn btn-primary" />*@
                             </div>
                         </div>
                     </div>
@@ -141,3 +163,12 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script type="text/javascript">
+    function showPreview(event) {
+        var src = URL.createObjectURL(event.target.files[0]);
+        var preview = document.getElementById("file-preview");
+        preview.src = src;
+        preview.style.display = "block;"
+    }
+</script>

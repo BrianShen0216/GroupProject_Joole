@@ -7,11 +7,26 @@
     //Layout = "~/Views/Shared/_Layout.cshtml";
     //Layout = "~/Views/Shared/Header.cshtml";
 }
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-    Launch demo modal
-</button>
 
+
+<style>
+    .center {
+        height: 100%;
+        display: flew;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .form-input {
+        width: 200px;
+        padding: 5px;
+        background: white;
+    }
+
+        .form-input img {
+            width: 100%;
+        }
+</style>
 
 
 
@@ -26,7 +41,7 @@
         <div class="form-group">
             @*@Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })*@
             <div class="col-md-10 editor">
-                @Html.TextBoxFor(model => model.UserName, new { style = "width:900px", placeholder = "User Name", @class = "form-input" })
+                @Html.TextBoxFor(model => model.UserName, new { style = "width:690px", placeholder = "User Name", @class = "form-input" })
                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -34,7 +49,7 @@
         <div class="form-group">
             @*@Html.LabelFor(model => model.UserPassword, htmlAttributes: new { @class = "control-label col-md-2"})*@
             <div class="col-md-10 editor">
-                @Html.PasswordFor(model => model.UserPassword, new { style = "width:900px", placeholder = "User Password", @class = "form-input" })
+                @Html.PasswordFor(model => model.UserPassword, new { style = "width:690px", placeholder = "User Password", @class = "form-input" })
                 @*@Html.EditorFor(model => model.UserPassword, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "text-danger" })
             </div>
@@ -43,9 +58,10 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <br />
-                <input type="submit" href="Home/Login" value="Log in" class="btn btn-primary" />
+                <button type="submit" onclick="location.href='@Url.Action("Login","Home")'">Login</button>
+                @*<input type="submit" href="Home/Login" value="Login" class="btn btn-primary" />*@
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Sign Up
                 </button>
             </div>
@@ -76,26 +92,37 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="justify-content-xxl-center">
-                        @*<p><label>Image Preview</label></p>*@
-                        <img src="~/Image/Image.png" width="120" height="120" alt="" />
-                        @*<p><label>Your Profile Pic</label></p>*@
-                        <button>Choose File</button><label>No file choseen</label>
+                    <label>Image Preview</label>
+                    <div class="center d-flex aligns-items-center justify-content-center">
+                        <div class="form-input d-flex aligns-items-center justify-content-center">
+                            <div class="preview">
+                                @*<img src="~/Image/Image.png" width="120" height="120" alt="" />*@
+                                <img id="file-preview" />
+                            </div>
+                        </div>
                     </div>
 
+                    <div class="d-flex aligns-items-center justify-content-center">
+                        <label>Your Profile Pic</label>
+                    </div>
+                    <div class="d-flex aligns-items-center justify-content-center">
+                        <input type="file" id="file-ip-1" accept="image/*" onchange="showPreview(event);">
+                    </div>
+
+
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="form-group">
+                    <div class="form-group" style="white-space:nowrap">
                         @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.TextBoxFor(model => model.UserName, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="white-space:nowrap">
                         @Html.LabelFor(model => model.UserEmail, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-offset-4">
-                            @Html.EditorFor(model => model.UserEmail, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.TextBoxFor(model => model.UserEmail, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.UserEmail, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -103,15 +130,15 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.UserPassword, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-offset-4">
-                            @Html.EditorFor(model => model.UserPassword, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.PasswordFor(model => model.UserPassword, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.UserPassword, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group" style="white-space:nowrap">
                         @Html.LabelFor(model => model.UserConPassword, htmlAttributes: new { @class = "control-label col-md-2" })
                         <div class="col-md-offset-4">
-                            @Html.EditorFor(model => model.UserConPassword, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.PasswordFor(model => model.UserConPassword, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.UserConPassword, "", new { @class = "text-danger" })
                         </div>
 
@@ -129,8 +156,11 @@
 }
 
 
-@*@section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    function showPreview(event) {
+        var src = URL.createObjectURL(event.target.files[0]);
+        var preview = document.getElementById("file-preview");
+        preview.src = src;
+        preview.style.display = "block;"
     }
-
-*@
+</script>
